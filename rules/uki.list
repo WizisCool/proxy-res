@@ -1,0 +1,24 @@
+# Uki Proxy Rule List
+# 用途: 配合规则提供者 (Rule Providers) 实现 IP 属地伪装及核心业务代理
+# 更新逻辑: 保留核心 API、HTTPDNS、风控域名与业务直连 IP；剥离广告及遥测节点
+
+# 1. HTTP 域名系统 (HTTPDNS) - 防止本地 DNS 泄漏真实解析来源
+IP-CIDR,203.107.1.1/32,no-resolve
+IP-CIDR,203.107.6.88/32,no-resolve
+
+# 2. 业务风控与安全审计 (Risk Control) - 确保风控引擎获取代理节点 IP
+DOMAIN-SUFFIX,ac.dun.163.com
+DOMAIN-SUFFIX,ac.dun.163yun.com
+
+# 3. 核心应用程序编程接口 (Application Programming Interface, API) 与云设施
+DOMAIN-SUFFIX,api.chenlongtech.cn
+DOMAIN-SUFFIX,neoclub.cn
+DOMAIN-SUFFIX,skyengine.com.cn
+DOMAIN-SUFFIX,aliyuncs.com
+
+# 4. 消息推送长连接 (Push Notification) - 防止后台长连接暴露真实 IP
+DOMAIN-SUFFIX,c-hzgt2.getui.com
+DOMAIN-SUFFIX,gepush.com
+DOMAIN-SUFFIX,getui.net
+DOMAIN-SUFFIX,sdk-open-phone.getui.com
+DOMAIN-SUFFIX,sdk.open.talk.igexin.com
